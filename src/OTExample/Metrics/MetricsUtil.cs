@@ -1,12 +1,20 @@
-﻿using System.Runtime.CompilerServices;
+﻿using System.Diagnostics;
+using System.Runtime.CompilerServices;
 
 namespace OTExample.Metrics
 {
-    public class MetricsUtil : IMetricsUtil
+    public class MetricsUtil : IMetricsUtil, IDisposable
     {
-        public IDisposable MeasureTime([CallerMemberName] string name = "")
+        public MetricsUtil()
         {
-            throw new NotImplementedException();
+            _activitySource = new ActivitySource("OTExample");
         }
+
+        public void Dispose() => _activitySource.Dispose();
+
+        public IDisposable MeasureTime([CallerMemberName] string name = "") =>
+            _activitySource.StartActivity(name) ?? throw new ArgumentException($"No activity listeners for {name}", nameof(name));
+
+        private readonly ActivitySource _activitySource;
     }
 }
