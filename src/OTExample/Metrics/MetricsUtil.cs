@@ -7,7 +7,7 @@ namespace OTExample.Metrics
     {
         public MetricsUtil()
         {
-            _activitySource = new ActivitySource("OTExample");
+            _activitySource = new ActivitySource(MetricsConstantcs.SERVICE_NAME);
         }
 
         public void Dispose() => _activitySource.Dispose();
