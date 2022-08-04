@@ -14,11 +14,15 @@ namespace OTExample.Service
             while (true)
             {
                 stoppingToken.ThrowIfCancellationRequested();
+                await DoWorkAsync(stoppingToken);
 
-                using var _ = _metrics.MeasureTime();
-
-                await Task.Delay(_rnd.Next(1000, 5000), stoppingToken); // Some work
             }
+        }
+
+        private async Task DoWorkAsync(CancellationToken ct)
+        {
+            using var _ = _metrics.MeasureTime();
+            await Task.Delay(_rnd.Next(1000, 5000), ct); // Some work
         }
 
         private readonly IMetricsUtil _metrics;
