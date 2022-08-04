@@ -3,8 +3,6 @@ Example how to use OT Metrics in ASP.NET App
 
 Current implementation contains example how to inject mesuring time metric to the Hosted service and export this data to the Console exporter.
 
-Other examples will be added later.
-
 ```
 Activity.TraceId:          207d0de81d6f0807db0c6b5f865ff8b7
 Activity.SpanId:           f20c6e645e42c4af
@@ -18,3 +16,5 @@ Resource associated with Activity:
     service.name: OTExample
     service.instance.id: b51a7236-9c7d-4b41-8ced-9b0ea92bd7b6
 ```
+
+Other examples will be added later.
